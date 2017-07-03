@@ -17,9 +17,8 @@ class McgpathwaySpider(scrapy.Spider):
 		print("Pathyway", "Gene", "Upstream_pathways", "Downstream_pathways", "Diseases", "Target", "Abstract", "Pathyway_url", "Image_description", sep="\t", file=files)
 
 	def parse(self, response):
-		pass
-		#for each_url in response.xpath('//*[@id="section-content-container"]/div/ul/li/a/@href').extract():
-		#	yield scrapy.Request(each_url, callback=self.parse_pathway)
+		for each_url in response.xpath('//*[@id="section-content-container"]/div/ul/li/a/@href').extract():
+			yield scrapy.Request(each_url, callback=self.parse_pathway)
 
 	def parse_pathway(self, response):
 		item = PathwayItem()
